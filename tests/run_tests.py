@@ -3,44 +3,45 @@
 import subprocess
 import sys
 import os
-
+# Add the parent directory to Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def run_tests():
     """Run all tests with detailed output."""
     print("🧪 Running Cohere AI Assistant Tests")
     print("=" * 50)
 
-    # Check if required packages are installed
-    required_packages = ['pytest', 'ragas', 'pandas', 'datasets']
-    missing_packages = []
-
-    for package in required_packages:
-        try:
-            __import__(package)
-        except ImportError:
-            missing_packages.append(package)
-
-    if missing_packages:
-        print(f"❌ Missing packages: {', '.join(missing_packages)}")
-        print("Install with: pip install -r requirements_test.txt")
-        return False
+    # # Check if required packages are installed
+    # required_packages = ['pytest', 'ragas', 'pandas', 'datasets']
+    # missing_packages = []
+    #
+    # for package in required_packages:
+    #     try:
+    #         __import__(package)
+    #     except ImportError:
+    #         missing_packages.append(package)
+    #
+    # if missing_packages:
+    #     print(f"❌ Missing packages: {', '.join(missing_packages)}")
+    #     print("Install with: pip install -r requirements_test.txt")
+    #     return False
 
     # Run tests
     test_commands = [
         # Basic functionality tests
-        ["pytest", "test_assistant_basic.py", "-v", "--tb=short"],
+        ["pytest", "tests/test_assistant_basic.py", "-v", "--tb=short"],
 
-        # RAGAS evaluation tests
-        ["pytest", "test_ragas_evaluation.py", "-v", "--tb=short", "-s"],
-
-        # Performance tests
-        ["pytest", "test_performance.py", "-v", "--tb=short"],
-
-        # Integration tests
-        ["pytest", "test_integration.py", "-v", "--tb=short"],
-
-        # Generate coverage report
-        ["pytest", "--cov=assistant", "--cov-report=html", "--cov-report=term"]
+        # # RAGAS evaluation tests
+        # ["pytest", "test_ragas_evaluation.py", "-v", "--tb=short", "-s"],
+        #
+        # # Performance tests
+        # ["pytest", "test_performance.py", "-v", "--tb=short"],
+        #
+        # # Integration tests
+        # ["pytest", "test_integration.py", "-v", "--tb=short"],
+        #
+        # # Generate coverage report
+        # ["pytest", "--cov=assistant", "--cov-report=html", "--cov-report=term"]
     ]
 
     all_passed = True

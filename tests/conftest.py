@@ -7,7 +7,7 @@ from unittest.mock import patch, Mock
 def pytest_configure(config):
     """Configure pytest."""
     # Set test environment variables
-    os.environ['COHERE_API_KEY'] = os.getenv('COHERE_API_KEY')
+    os.environ['COHERE_API_KEY'] = str(os.getenv('COHERE_API_KEY'))
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_test_environment():

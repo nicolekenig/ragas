@@ -7,13 +7,12 @@ import os
 from unittest.mock import patch, Mock
 from assistant import Assistant
 
-
 class TestSimpleAssistant:
     """Test cases for SimpleAssistant class."""
 
     def test_initialization_with_api_key(self, mock_cohere_client):
         """Test assistant initialization with API key."""
-        with patch.dict(os.environ, {'COHERE_API_KEY': 'test-key'}):
+        with patch.dict(os.environ, {'COHERE_API_KEY': str(os.getenv('COHERE_API_KEY'))}):
             assistant = Assistant()
             assert assistant.client is not None
             assert assistant.history == []

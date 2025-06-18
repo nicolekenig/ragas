@@ -1,4 +1,6 @@
 """Cohere AI Assistant."""
+import os
+
 import cohere
 import json
 from datetime import datetime
@@ -6,11 +8,16 @@ from config import COHERE_API_KEY, MODEL, MAX_TOKENS, TEMPERATURE, MAX_HISTORY
 
 
 class Assistant:
-    def __init__(self):
-        if not COHERE_API_KEY:
+    def __init__(self, api_key=None):
+        if api_key is None:
+            api_key  = os.getenv('COHERE_API_KEY')
+
+        if not api_key:
             raise ValueError("Set COHERE_API_KEY environment variable")
 
-        self.client = cohere.Client(COHERE_API_KEY)
+        self.api_key = api_key
+
+        self.client = cohere.Client(self.api_key)
         self.history = []
 
     def chat(self, message):
