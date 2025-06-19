@@ -1,10 +1,9 @@
 """Cohere AI Assistant."""
 import os
-
 import cohere
 import json
 from datetime import datetime
-from config import COHERE_API_KEY, MODEL, MAX_TOKENS, TEMPERATURE, MAX_HISTORY
+from config import MAX_HISTORY, MODEL, TEMPERATURE, MAX_TOKENS
 
 
 class Assistant:

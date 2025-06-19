@@ -12,10 +12,10 @@ import os
 class TestPerformance:
     """Performance tests for the assistant."""
 
-    def test_response_time(self, assistant):
+    def test_response_time(self, ai_assistant):
         """Test response time for single query."""
         start_time = time.time()
-        response = assistant.chat("What is machine learning?")
+        response = ai_assistant.chat("What is machine learning?")
         end_time = time.time()
 
         response_time = end_time - start_time
@@ -27,7 +27,7 @@ class TestPerformance:
 
         print(f"Response time: {response_time:.2f} seconds")
 
-    def test_memory_usage(self, assistant):
+    def test_memory_usage(self, ai_assistant):
         """Test memory usage with multiple conversations."""
 
         process = psutil.Process(os.getpid())
@@ -35,7 +35,7 @@ class TestPerformance:
 
         # Have multiple conversations
         for i in range(20):
-            assistant.chat(f"Test conversation {i}")
+            ai_assistant.chat(f"Test conversation {i}")
 
         final_memory = process.memory_info().rss / 1024 / 1024  # MB
         memory_increase = final_memory - initial_memory

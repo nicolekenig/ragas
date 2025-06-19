@@ -12,18 +12,18 @@ from ragas.metrics import (
     answer_correctness,
     answer_similarity
 )
-from test_config import TEST_QUESTIONS, TEST_CONTEXTS, TEST_GROUND_TRUTHS
+from config import TEST_QUESTIONS, TEST_CONTEXTS, TEST_GROUND_TRUTHS
 
 
 class TestRAGASEvaluation:
     """RAGAS evaluation tests for the assistant."""
 
     @pytest.fixture
-    def evaluation_dataset(self, assistant):
+    def evaluation_dataset(self, ai_assistant):
         """Create evaluation dataset with assistant responses."""
         responses = []
         for question in TEST_QUESTIONS:
-            response = assistant.chat(question)
+            response = ai_assistant.chat(question)
             responses.append(response)
 
         # Create dataset for RAGAS evaluation

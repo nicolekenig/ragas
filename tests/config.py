@@ -1,11 +1,5 @@
-"""Test configuration and fixtures."""
+""" Test data for RAGAS evaluation """
 
-import os
-import pytest
-from unittest.mock import Mock, patch
-from assistant import Assistant
-
-# Test data for RAGAS evaluation
 TEST_QUESTIONS = [
     "What is artificial intelligence?",
     "How does machine learning work?",
@@ -30,29 +24,3 @@ TEST_GROUND_TRUTHS = [
     "Neural networks are AI systems modeled after brain networks with interconnected processing nodes."
 ]
 
-
-@pytest.fixture
-def mock_cohere_client():
-    """Mock Cohere client for testing."""
-    with patch('cohere.Client') as mock_client:
-        mock_instance = Mock()
-        mock_client.return_value = mock_instance
-
-        # Mock chat response
-        mock_chat_response = Mock()
-        mock_chat_response.text = "This is a test response from the AI assistant."
-        mock_instance.chat.return_value = mock_chat_response
-
-        # Mock summarize response
-        mock_summary_response = Mock()
-        mock_summary_response.summary = "This is a test summary."
-        mock_instance.summarize.return_value = mock_summary_response
-
-        yield mock_instance
-
-
-@pytest.fixture
-def assistant(mock_cohere_client):
-    """Create assistant instance with mocked client."""
-    with patch.dict(os.environ, {'COHERE_API_KEY': 'test-key'}):
-        return Assistant()
