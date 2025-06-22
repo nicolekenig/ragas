@@ -31,17 +31,17 @@ def run_tests():
         # Basic functionality tests
         ["pytest", "tests/test_assistant_basic.py", "-v", "--tb=short"],
 
-        # # RAGAS evaluation tests
-        # ["pytest", "test_ragas_evaluation.py", "-v", "--tb=short", "-s"],
-        #
-        # # Performance tests
-        # ["pytest", "test_performance.py", "-v", "--tb=short"],
-        #
-        # # Integration tests
-        # ["pytest", "test_integration.py", "-v", "--tb=short"],
-        #
-        # # Generate coverage report
-        # ["pytest", "--cov=assistant", "--cov-report=html", "--cov-report=term"]
+        # RAGAS evaluation tests
+        ["pytest", "tests/test_ragas_evaluation.py", "-v", "--tb=short", "-s"],
+
+        # Performance tests
+        ["pytest", "tests/test_performance.py", "-v", "--tb=short"],
+
+        # Integration tests
+        ["pytest", "tests/test_integration.py", "-v", "--tb=short"],
+
+        # Generate coverage report
+        ["pytest", "--cov=assistant", "--cov-report=html", "--cov-report=term"]
     ]
 
     all_passed = True
